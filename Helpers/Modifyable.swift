@@ -1,8 +1,8 @@
 //
-//  SegmentedPickerApp.swift
+//  Modifyable.swift
 //  SegmentedPicker
 //
-//  Created by Antonio Nunes on 07/07/2020.
+//  Created by Antonio Nunes on 03/07/2020.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this source code and associated documentation files (the "SourceCode"), to deal
@@ -22,13 +22,15 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-import SwiftUI
-
-@main
-struct SegmentedPickerApp: App {
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
-        }
+@propertyWrapper class Modifiable<Value> {
+    private(set) var value: Value
+    
+    init(wrappedValue: Value) {
+        self.value = wrappedValue
+    }
+    
+    var wrappedValue: Value {
+        get { value }
+        set { value = newValue }
     }
 }
